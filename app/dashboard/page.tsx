@@ -30,7 +30,7 @@ export default async function Dashboard() {
         </div>
       </div>
     );
-  } catch (error) {
+  } catch {
     redirect("/");
   }
 }
