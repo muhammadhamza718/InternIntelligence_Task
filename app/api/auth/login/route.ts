@@ -1,17 +1,7 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import { createClient } from "next-sanity";
 import bcrypt from "bcryptjs";
-import { createToken } from "@/lib/auth";
-
-// Initialize Sanity client
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2023-05-03",
-  useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
-});
+import { createToken, sanityClient } from "@/lib/auth";
 
 // Rate limiting setup - simplified for now
 const ipRequests = new Map<string, { count: number; resetTime: number }>();
@@ -57,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     // Query Sanity for user with matching email
     const query = `*[_type == "user" && email == $email][0]`;
-    const user = await client.fetch(query, { email });
+    const user = await sanityClient.fetch(query, { email });
 
     if (!user) {
       return NextResponse.json(
@@ -96,7 +86,8 @@ export async function POST(request: NextRequest) {
     });
 
     // Return user data (excluding password)
-    const { password: _, ...userData } = user;
+    const { password: userPassword, ...userData } = user;
+    delete userData.password;
 
     return NextResponse.json({
       message: "Login successful",

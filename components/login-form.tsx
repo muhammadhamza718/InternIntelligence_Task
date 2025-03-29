@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
@@ -62,8 +61,8 @@ export default function LoginForm() {
           router.refresh(); // Refresh the page to update the auth state
         },
       });
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Failed to login. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -157,7 +156,7 @@ export default function LoginForm() {
 
                 <div className="flex flex-col space-y-2 text-sm">
                   <p className="text-gray-500">
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <Link
                       href="/signup"
                       className="text-[#6366F1] hover:underline font-medium"

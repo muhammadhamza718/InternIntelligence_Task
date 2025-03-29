@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,8 +46,8 @@ export default function ForgotPasswordForm() {
       }
 
       setIsSubmitted(true);
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Failed to process request. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -120,7 +119,7 @@ export default function ForgotPasswordForm() {
             ) : (
               <div className="space-y-4">
                 <div className="bg-green-50 p-4 rounded-md text-green-800 text-sm">
-                  We've sent password reset instructions to{" "}
+                  We&apos;ve sent password reset instructions to{" "}
                   <strong>{email}</strong>. Please check your email.
                 </div>
 

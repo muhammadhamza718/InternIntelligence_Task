@@ -42,7 +42,8 @@ export async function GET() {
     }
 
     // Return user data (excluding password)
-    const { password, ...userData } = user;
+    const { password: userPassword, ...userData } = user;
+    delete userData.password;
 
     return NextResponse.json({
       user: userData,
