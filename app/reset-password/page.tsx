@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import ResetPasswordForm from "@/components/reset-password-form";
 
+// @ts-ignore
 export default async function ResetPasswordPage({
   searchParams,
 }: {
