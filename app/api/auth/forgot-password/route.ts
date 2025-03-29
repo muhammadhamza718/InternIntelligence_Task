@@ -3,8 +3,12 @@ import { createClient } from "next-sanity";
 import { randomBytes } from "crypto";
 import { Resend } from "resend";
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend with error handling
+const resendApiKey = process.env.RESEND_API_KEY;
+if (!resendApiKey) {
+  throw new Error("RESEND_API_KEY is not set in environment variables");
+}
+const resend = new Resend(resendApiKey);
 
 // Initialize Sanity client
 const client = createClient({
