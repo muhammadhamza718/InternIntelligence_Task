@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";

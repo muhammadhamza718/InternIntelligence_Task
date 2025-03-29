@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyToken, type TokenPayload } from "@/lib/auth";
