@@ -1,11 +1,17 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import ResetPasswordForm from "@/components/reset-password-form";
 
 export default function ResetPasswordFormWrapper() {
   const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tokenParam = searchParams.get("token");
+    setToken(tokenParam);
+  }, [searchParams]);
 
   // If no token is provided, redirect to home
   if (!token) {
@@ -14,4 +20,4 @@ export default function ResetPasswordFormWrapper() {
   }
 
   return <ResetPasswordForm token={token} />;
-} 
+}
