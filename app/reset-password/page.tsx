@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import ResetPasswordForm from "@/components/reset-password-form";
 
-interface Props {
+type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
-}
+};
 
 export default async function ResetPasswordPage({ searchParams }: Props) {
   const token = searchParams.token as string;
