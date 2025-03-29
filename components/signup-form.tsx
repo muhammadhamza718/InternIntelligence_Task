@@ -3,7 +3,6 @@
 import type React from "react";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -64,8 +63,8 @@ export default function SignupForm() {
 
       // Redirect to login page
       window.location.href = "/";
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Failed to sign up. Please try again.");
     } finally {
       setIsLoading(false);
     }

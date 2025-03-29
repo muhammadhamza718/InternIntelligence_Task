@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
@@ -60,8 +59,8 @@ export default function ResetPasswordForm({ token }: { token: string }) {
           router.refresh();
         },
       });
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Failed to reset password. Please try again.");
     } finally {
       setIsLoading(false);
     }

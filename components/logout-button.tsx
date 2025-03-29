@@ -22,7 +22,7 @@ export function LogoutButton() {
           router.refresh();
         },
       });
-    } catch (error) {
+    } catch {
       toast.error("Failed to logout. Please try again.");
     }
   };
